@@ -18,8 +18,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const ChatRoom = require("./models/chatRoom");
 
-const MONGODB_URI =
-  "mongodb+srv://thinhnguyen:thinh123@cluster0.mlgzck1.mongodb.net/assignment03";
+const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
 
 // Tạo một server HTTP và kết nối với ứng dụng Express (app)
