@@ -25,7 +25,11 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["https://nonononame12.github.io", "http://localhost:3001"], // Client and Admin origins
+    origin: [
+      "https://assignment3-node-js.vercel.app/",
+      "https://nonononame12.github.io",
+      "http://localhost:3001",
+    ], // Client and Admin origins
     methods: ["GET", "POST"],
     credentials: true, // Nếu cần xác thực
   },
@@ -121,6 +125,7 @@ app.use(express.json()); // Để xử lý application/json
 app.use(express.urlencoded({ extended: true })); // Để xử lý application/x-www-form-urlencoded
 
 const allowedOrigins = [
+  "https://assignment3-node-js.vercel.app/",
   "https://nonononame12.github.io", // URL frontend React
   "http://localhost:3001", // Thêm URL khác nếu cần
 ];
