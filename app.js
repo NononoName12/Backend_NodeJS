@@ -165,9 +165,9 @@ app.use(
     store: store, // Nơi lưu trữ session (ở đây là MongoDB)
     cookie: {
       maxAge: 60 * 60 * 1000, // Thời gian sống của cookie (1 giờ)
-      secure: process.env.NODE_ENV === "production", // Chỉ gửi cookie qua HTTPS trong môi trường production
-      httpOnly: true, // Đảm bảo cookie không thể truy cập từ JavaScript
-      sameSite: "None", // Cho phép gửi cookie qua các miền khác nhau
+      // secure: process.env.NODE_ENV === "production", // Chỉ gửi cookie qua HTTPS trong môi trường production
+      // httpOnly: true, // Đảm bảo cookie không thể truy cập từ JavaScript
+      // sameSite: "None", // Cho phép gửi cookie qua các miền khác nhau
     },
   })
 );
