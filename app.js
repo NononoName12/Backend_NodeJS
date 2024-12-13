@@ -173,9 +173,9 @@ app.use(
     saveUninitialized: false, // Session sẽ không được lưu cho đến khi nó có sự thay đổi
     store: store, // Nơi lưu trữ session (ở đây là MongoDB)
     cookie: {
-      // maxAge: 60 * 60 * 1000, // Thời gian sống của cookie (1 giờ)
-      // secure: true, // Chỉ gửi cookie qua HTTPS trong môi trường production
-      // httpOnly: true, // Đảm bảo cookie không thể truy cập từ JavaScript
+      maxAge: 60 * 60 * 1000, // Thời gian sống của cookie (1 giờ)
+      secure: true, // Chỉ gửi cookie qua HTTPS trong môi trường production
+      httpOnly: true, // Đảm bảo cookie không thể truy cập từ JavaScript
       sameSite: "None", // Cho phép gửi cookie qua các miền khác nhau
     },
   })
