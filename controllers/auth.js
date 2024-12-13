@@ -113,6 +113,12 @@ exports.postSignin = (req, res, next) => {
           if (doMatch) {
             req.session.isLoggedIn = true;
             req.session.user = user;
+            // Gửi cookie tới client
+            res.cookie("token", "example", {
+              httpOnly: true,
+              secure: true,
+              sameSite: "None",
+            });
             console.log("Session before save:", req.session); // Log session data
             req.session.save((err) => {
               if (err) {
