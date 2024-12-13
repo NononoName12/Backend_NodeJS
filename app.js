@@ -198,15 +198,15 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err)); // Xử lý lỗi
 });
 
-app.get("/", (req, res) => {
-  // Sử dụng res đúng ngữ cảnh
-  res.cookie("token", "example", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-  });
-  res.send("Cookie has been set");
-});
+// app.get("/", (req, res) => {
+//   // Sử dụng res đúng ngữ cảnh
+//   res.cookie("token", "example", {
+//     httpOnly: true,
+//     secure: true,
+//     sameSite: "None",
+//   });
+//   res.send("Cookie has been set");
+// });
 
 // Cấu hình các route (đường dẫn) cho ứng dụng Express.js
 app.use("/chat", chatRoutes);
