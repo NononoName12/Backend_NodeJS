@@ -28,7 +28,6 @@ const io = socketIo(server, {
     origin: [
       "https://assignment3-node-js.vercel.app",
       "https://nonononame12.github.io",
-      "http://localhost:3001",
     ], // Client and Admin origins
     methods: ["GET", "POST"],
     credentials: true, // Nếu cần xác thực
@@ -62,7 +61,7 @@ io.on("connection", (socket) => {
     // Tìm phòng chat hoặc tạo mới nếu chưa tồn tại
     let room = await ChatRoom.findOne({ roomId });
     if (!room) {
-      console.log("ADD CHATROOMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+      // console.log("ADD CHATROOMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
       room = new ChatRoom({ roomId, messages: [] });
       await room.save();
       activeRooms.push(room);
@@ -95,7 +94,7 @@ io.on("connection", (socket) => {
 
   // Khi kết thúc chat
   socket.on("endChat", async ({ roomId }) => {
-    console.log("REMOVE CHATROOMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+    // console.log("REMOVE CHATROOMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
     // Xóa phòng chat khỏi cơ sở dữ liệu
     await ChatRoom.findOneAndDelete({ roomId }); // Xóa phòng chat khỏi MongoDB
 
@@ -127,7 +126,6 @@ app.use(express.urlencoded({ extended: true })); // Để xử lý application/x
 const allowedOrigins = [
   "https://assignment3-node-js.vercel.app",
   "https://nonononame12.github.io", // URL frontend React
-  "http://localhost:3001", // Thêm URL khác nếu cần
 ];
 
 app.use(
