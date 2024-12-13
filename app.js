@@ -123,31 +123,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Để xử lý application/json
 app.use(express.urlencoded({ extended: true })); // Để xử lý application/x-www-form-urlencoded
 
-// const allowedOrigins = [
-//   "https://assignment3-node-js.vercel.app",
-//   "https://nonononame12.github.io", // URL frontend React
-// ];
+const allowedOrigins = [
+  "https://assignment3-node-js.vercel.app",
+  "https://nonononame12.github.io", // URL frontend React
+];
 
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         // Nếu không có origin (khi request từ server-side) hoặc origin hợp lệ
-//         callback(null, true);
-//       } else {
-//         // Nếu origin không hợp lệ
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     credentials: true, // Cho phép gửi cookie và auth
-//   })
-// );
 app.use(
   cors({
-    origin: "https://nonononame12.github.io", // GitHub Pages domain
-    credentials: true, // Quan trọng: Cho phép gửi cookie
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        // Nếu không có origin (khi request từ server-side) hoặc origin hợp lệ
+        callback(null, true);
+      } else {
+        // Nếu origin không hợp lệ
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Cho phép gửi cookie và auth
   })
 );
+// app.use(
+//   cors({
+//     origin: "https://nonononame12.github.io", // GitHub Pages domain
+//     credentials: true, // Quan trọng: Cho phép gửi cookie
+//   })
+// );
 
 //Kết nối và lưu trữ session vào MongoDB
 const store = new MongoDBStore({
