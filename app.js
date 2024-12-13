@@ -148,12 +148,6 @@ app.use(
     credentials: true, // Quan trọng: Cho phép gửi cookie
   })
 );
-res.cookie("token", "value", {
-  httpOnly: true,
-  secure: true, // Vì Render chạy HTTPS
-  sameSite: "None", // Để cookie hoạt động cross-origin
-});
-res.send("Cookie set!");
 
 //Kết nối và lưu trữ session vào MongoDB
 const store = new MongoDBStore({
@@ -202,6 +196,16 @@ app.use((req, res, next) => {
       next(); // Tiếp tục đến middleware hoặc route tiếp theo
     })
     .catch((err) => console.log(err)); // Xử lý lỗi
+});
+
+app.get("/", (req, res) => {
+  // Sử dụng res đúng ngữ cảnh
+  res.cookie("token", "example", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
+  res.send("Cookie has been set");
 });
 
 // Cấu hình các route (đường dẫn) cho ứng dụng Express.js
